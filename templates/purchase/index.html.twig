@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="row">
+    <div class="col col-md-8 offset-md-2 col-sm-12 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <img src="{{ asset('images/logo_transparent.png') }}" alt="Logo" class="nav-image" />
+          </div>
+          <div>
+            <p>{{ token.description }}</p>
+            ${{ (token.price / 100)|number_format(2) }} USD<br />
+          </div>
+          <form method="post" action="{{ action }}">
+            <button type="submit" class="btn btn-success btn-block">
+              Purchase
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

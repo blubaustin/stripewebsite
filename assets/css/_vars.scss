@@ -1,0 +1,72 @@
+$break-xs: 320px;
+$break-sm: 600px;
+$break-md: 960px;
+$break-lg: 1280px;
+$break-xl: 1920px;
+
+$color-primary: #2e365a;
+$color-success: #57bb10;
+$color-warning: #e0a800;
+$color-danger: #a92d2d;
+$color-secondary: #5b5a6a;
+$color-info: #2384b1;
+$color-link: #00abe5;
+
+$color-premium-gold: #e2c524;
+$color-premium-platinum: #E7E7E7;
+$color-premium-master: $color-success;
+
+:export {
+  colorPrimary: $color-primary;
+  colorInfo:    $color-info;
+  colorSuccess: $color-success;
+  colorWarning: $color-warning;
+  colorDanger:  $color-danger;
+  breakXs: $break-xs;
+  breakSm: $break-sm;
+  breakMd: $break-md;
+  breakLg: $break-lg;
+  breakXl: $break-xl;
+}
+
+$color-names-list: primary success info danger warning;
+$colors-list: $color-primary $color-success $color-info $color-danger $color-warning;
+$color-premium-names-list: gold platinum master;
+$color-premium-list: $color-premium-gold $color-premium-platinum $color-premium-master;
+
+
+$gutter-size: 15px;
+$gutter-size-lg: $gutter-size * 2;
+$gutter-size-sm: $gutter-size / 2;
+$header-height: 65px;
+$footer-height: 100px;
+
+@mixin media-xs {
+  @media (min-width: #{$break-xs}) and (max-width: #{$break-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (min-width: #{$break-sm}) and (max-width: #{$break-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (min-width: #{$break-md}) and (max-width: #{$break-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media (min-width: #{$break-lg}) and (max-width: #{$break-xl - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media (min-width: #{$break-xl}) {
+    @content;
+  }
+}

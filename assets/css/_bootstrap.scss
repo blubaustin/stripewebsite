@@ -1,0 +1,13 @@
+@import "vars";
+
+$enable-rounded: false;
+$theme-colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "info": $color-info,
+  "success": $color-success,
+  "danger": $color-danger,
+  "warning": $color-warning
+);
+
+@import "~bootstrap/scss/bootstrap";

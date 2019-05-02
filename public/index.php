@@ -2,7 +2,7 @@
 
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
-use Symfony\Component\HttpFoundation\Request;
+use App\Http\Request;
 
 require dirname(__DIR__).'/config/bootstrap.php';
 

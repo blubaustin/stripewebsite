@@ -1,0 +1,60 @@
+@import "vars";
+
+.navbar {
+  min-height: 60px;
+  padding: 0.25rem 1rem;
+  margin-bottom: $gutter-size;
+  background-color: $color-primary;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #FFF;
+  font-size: 1.2rem;
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-brand {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-image {
+  height: 36px;
+
+  @include media-xs {
+    height: 30px;
+  }
+}
+
+.nav-avatar {
+  margin-right: 5px;
+}
+
+.dropdown-toggle::after {
+  vertical-align: 0.1em;
+}
+
+.dropdown-menu {
+  background-color: lighten($color-primary, 5%);
+}
+
+.dropdown-item {
+  color: #FFF;
+}
+
+.dropdown-divider {
+  border-top: 1px solid lighten($color-primary, 15%);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 1.4rem;
+}

@@ -17,6 +17,7 @@
     "symfony/framework-bundle": "4.2.*",
     "symfony/monolog-bundle": "^3.3",
     "symfony/orm-pack": "^1.0",
+    "symfony/security-bundle": "4.2.*",
     "symfony/swiftmailer-bundle": "^3.2",
     "symfony/templating": "4.2.*",
     "symfony/translation": "4.2.*",

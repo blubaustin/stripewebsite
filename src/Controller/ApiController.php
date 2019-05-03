@@ -5,14 +5,13 @@ use App\Entity\Merchant;
 use App\Entity\PurchaseToken;
 use App\Http\Request;
 use Exception;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ApiController
  */
-class ApiController extends AbstractController
+class ApiController extends Controller
 {
     /**
      * @Route("/api/v1/token", name="api_token", methods={"POST"})
@@ -29,6 +28,7 @@ class ApiController extends AbstractController
             || empty($values['price'])
             || empty($values['description'])
             || empty($values['successURL'])
+            || empty($values['cancelURL'])
             || empty($values['failureURL'])
             || empty($values['webhookURL'])
         ) {
@@ -42,11 +42,11 @@ class ApiController extends AbstractController
             ->setPrice($values['price'])
             ->setDescription($values['description'])
             ->setSuccessURL($values['successURL'])
+            ->setCancelURL($values['cancelURL'])
             ->setFailureURL($values['failureURL'])
             ->setWebhookURL($values['webhookURL']);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($token);
-        $em->flush();
+        $this->em->persist($token);
+        $this->em->flush();
 
         return new JsonResponse(['token' => $token->getToken()]);
     }
@@ -74,7 +74,7 @@ class ApiController extends AbstractController
 
         $this->verifyMerchant($request);
 
-        $purchaseToken = $this->getDoctrine()->getRepository(PurchaseToken::class)->findByID($values['code']);
+        $purchaseToken = $this->em->getRepository(PurchaseToken::class)->findByID($values['code']);
         if (!$purchaseToken
             || $purchaseToken->getToken() !== $values['token']
             || $purchaseToken->getPrice() !== $values['price']
@@ -99,7 +99,7 @@ class ApiController extends AbstractController
         if (!$clientID || !$clientSecret) {
             throw $this->createAccessDeniedException();
         }
-        $merchant = $this->getDoctrine()->getRepository(Merchant::class)->findByID($clientID);
+        $merchant = $this->em->getRepository(Merchant::class)->findByID($clientID);
         if (!$merchant || !password_verify($clientSecret, $merchant->getPassword())) {
             throw $this->createAccessDeniedException();
         }

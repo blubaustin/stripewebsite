@@ -2,7 +2,9 @@
 namespace App\Repository;
 
 use App\Entity\PurchaseToken;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Exception;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -10,6 +12,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class PurchaseTokenRepository extends ServiceEntityRepository
 {
+    const TOKEN_EXPIRATION = 43200; // 12 hours
+
     /**
      * Constructor
      *
@@ -34,9 +38,29 @@ class PurchaseTokenRepository extends ServiceEntityRepository
      * @param string $token
      *
      * @return object|PurchaseToken
+     * @throws Exception
      */
     public function findByToken($token)
     {
-        return $this->findOneBy(['token' => $token]);
+        $purchaseToken = $this->findOneBy(['token' => $token]);
+        if (!$purchaseToken) {
+            return null;
+        }
+
+        $now  = new DateTime();
+        $diff = $now->getTimestamp() - $purchaseToken->getDateCreated()->getTimestamp();
+        if ($diff > self::TOKEN_EXPIRATION) {
+            return null;
+        }
+
+        return $purchaseToken;
+    }
+
+    /**
+     * @return PurchaseToken[]
+     */
+    public function findByClientFailure()
+    {
+        return $this->findBy(['isClientFailure' => true]);
     }
 }

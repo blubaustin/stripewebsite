@@ -1,0 +1,14 @@
+@import "vars";
+
+.card-purchase {
+  text-align: center;
+}
+
+.card-purchase-description {
+  padding: $gutter-size 0;
+}
+
+.card-purchase-price {
+  font-size: 2rem;
+  padding-bottom: $gutter-size;
+}

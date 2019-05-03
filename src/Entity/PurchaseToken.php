@@ -67,6 +67,12 @@ class PurchaseToken
      * @var string
      * @ORM\Column(type="string", length=255)
      */
+    protected $cancelURL;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
     protected $failureURL;
 
     /**
@@ -80,6 +86,24 @@ class PurchaseToken
      * @ORM\Column(type="boolean")
      */
     protected $isPurchased;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $stripeID;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $stripePaymentIntent;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $stripCustomer;
 
     /**
      * @var DateTime
@@ -251,6 +275,26 @@ class PurchaseToken
     /**
      * @return string
      */
+    public function getCancelURL(): string
+    {
+        return $this->cancelURL;
+    }
+
+    /**
+     * @param string $cancelURL
+     *
+     * @return PurchaseToken
+     */
+    public function setCancelURL(string $cancelURL): PurchaseToken
+    {
+        $this->cancelURL = $cancelURL;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getFailureURL(): string
     {
         return $this->failureURL;
@@ -304,6 +348,66 @@ class PurchaseToken
     public function setIsPurchased(bool $isPurchased): PurchaseToken
     {
         $this->isPurchased = $isPurchased;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStripeID(): ?string
+    {
+        return $this->stripeID;
+    }
+
+    /**
+     * @param string $stripeID
+     *
+     * @return PurchaseToken
+     */
+    public function setStripeID(string $stripeID): PurchaseToken
+    {
+        $this->stripeID = $stripeID;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStripePaymentIntent(): ?string
+    {
+        return $this->stripePaymentIntent;
+    }
+
+    /**
+     * @param string $stripePaymentIntent
+     *
+     * @return PurchaseToken
+     */
+    public function setStripePaymentIntent(string $stripePaymentIntent): PurchaseToken
+    {
+        $this->stripePaymentIntent = $stripePaymentIntent;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStripCustomer(): ?string
+    {
+        return $this->stripCustomer;
+    }
+
+    /**
+     * @param string $stripCustomer
+     *
+     * @return PurchaseToken
+     */
+    public function setStripCustomer(string $stripCustomer): PurchaseToken
+    {
+        $this->stripCustomer = $stripCustomer;
 
         return $this;
     }

@@ -2,18 +2,21 @@
 {% block body %}
   <div class="row">
     <div class="col col-md-8 offset-md-2 col-sm-12 col-12">
-      <div class="card">
+      <div class="card card-purchase">
         <div class="card-body">
-          <div class="text-center">
-            <img src="{{ asset('images/logo_transparent.png') }}" alt="Logo" class="nav-image" />
-          </div>
+          <img src="{{ asset('images/logo_transparent.png') }}" alt="Logo" class="nav-image" />
           <div>
-            <p>{{ token.description }}</p>
-            ${{ (token.price / 100)|number_format(2) }} USD<br />
+            <div class="card-purchase-description">
+              {{ token.description }}
+            </div>
+            <div class="card-purchase-price">
+              ${{ (token.price / 100)|number_format(2) }} USD
+            </div>
           </div>
           <form method="post" action="{{ action }}">
+            <img src="{{ asset('images/stripe-logo.png') }}" alt="Stripe Logo" class="stripe-logo" />
             <button type="submit" class="btn btn-success btn-block">
-              Purchase
+              Checkout with Stripe
             </button>
           </form>
         </div>

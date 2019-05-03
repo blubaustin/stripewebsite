@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    stripeApiKey: '%env(STRIPE_API_KEY)%'
+    stripeSecretKey: '%env(STRIPE_SECRET_KEY)%'
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +31,9 @@ services:
 
     App\Services\WebhookService:
         class: App\Services\WebhookService
+
+    App\Services\StripeService:
+        class: App\Services\StripeService
+        arguments:
+            - '%env(STRIPE_API_KEY)%'
+            - '%env(STRIPE_SECRET_KEY)%'

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="v-align-middle">
+  <div class="loading">
+    <svg class="loading-circular" viewBox="25 25 50 50">
+      <circle class="loading-path" cx="50" cy="50" r="20" fill="none" stroke="#30517F" stroke-width="4" />
+    </svg>
+    <div class="loading-label">
+      Redirecting you to Stripe.
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    var stripe = Stripe('{{ stripeAPIKey }}');
+    stripe.redirectToCheckout({
+      sessionId: '{{ stripeSessionID }}'
+    }).then(function (result) {
+      console.log(result);
+    });
+  </script>
+{% endblock %}
+

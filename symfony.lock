@@ -120,6 +120,9 @@
     "ralouphie/getallheaders": {
         "version": "2.0.5"
     },
+    "stripe/stripe-php": {
+        "version": "v6.34.3"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
     },
